@@ -1,0 +1,130 @@
+﻿<!--This HTML is used in the render function to build the elements within the plugin. The render function first creates a
+Dijit ContentPane to hold all the elements. The ContentPane is assigned a dynamic id upon creation. The render function
+takes the ContentPane id and prepends it to every element with a declared id in this HTML before the elements are created.
+The unique ContentPane id makes all the element ids unique and prevents duplicate id errors across other apps.-->
+<div id="top-wrap" class="bc-top-wrap">
+	<div style="display:flex; align-items:center;">
+		<h4>Mangrove Carbon Storage</h4>
+		<div class="grad-wrap">
+			<div>Low</div><div class="leg-gradient" id="leg-gradient"></div><div>High</div>
+		</div>
+	</div>
+	<div id="cmc" class="cmc">
+		<label class="form-component" for="cs3" style="flex:2;">
+			<input type="radio" id="cs3" name="cs" value="4"><div class="check"></div><span class="form-text">Total</span>
+		</label>
+		<label class="form-component" for="cs1" style="flex:2;">
+			<input type="radio" id="cs1" name="cs" value="2"><div class="check"></div><span class="form-text">Above Ground</span>
+		</label>
+		<label class="form-component" for="cs2" style="flex:2;">
+			<input type="radio" id="cs2" name="cs" value="3"><div class="check"></div><span class="form-text">Below Ground</span>
+		</label>
+		
+	
+		<div style="display:flex; margin-top:5px;">	
+			<label class="form-component" for="pa1">
+				<input type="checkbox" id="pa1" name="pa" value="1"><div class="check"></div><span class="form-text" style="margin-right:0px;">Protected Areas</span>
+			</label>
+			<div class="leg-protected" id="leg-protected"></div>
+		</div>
+	</div>
+	<h4>Choose a Geography</h4>
+	<div class="chosen-wrap" style="margin-bottom:10px; margin-top:10px;">
+		<select data-placeholder="Choose a Geography" id="countrySelect" class="chosen">
+			<option></option>
+		</select>
+	</div>
+	<div class="stats-wrap" id="stats-wrap">
+		<div class="stat-row storageStats">
+			<div style="line-height:1.2; flex:2">
+				<div class="stat-desc">Total mangrove carbon storage</div>
+				<div><span id="s-Total_C" class="stat-num headline-stat"></span> <span class="stat-desc">Mg</span></div>
+			</div>
+			<div style="margin-left:10px; text-align:right;">
+				<div class="stat-desc"><span id="s-AG_Carbon_Per" class="stat-num stat-desc" style="font-weight:bold"></span>% Above ground</div>
+				<div class="stat-desc"><span id="s-BG_Carbon_Per" class="stat-num stat-desc" style="font-weight:bold"></span>% Below ground</div>
+			</div>
+		</div>	
+		<div class="stat-row storageStats">
+			<div style="line-height:1.2; flex:2">
+				<div class="stat-desc">Estimated mangrove area</div>
+				<div><span id="s-Area_ha" class="stat-num headline-stat"></span> <span class="stat-desc">ha</span></div>
+			</div>
+			<div style="margin-left:10px; text-align:right;">
+				<div class="stat-desc">In protected areas</div>
+				<div class="stat-desc"><span id="s-Area_Prot" class="stat-num stat-desc" style="font-weight:bold"></span> ha (<span id="s-Pcnt_prot" class="stat-num stat-desc" style="font-weight:bold"></span>%)</div>
+			</div>
+		</div>	
+	</div>
+
+	
+	
+		
+		
+		<!-- <div class="stat-row storageStats">
+			<div class="stat-column">
+				<div id="potentialField" class="stat-num">450,000,000</div>
+				<div class="num-label">Megagrams</div>
+			</div>
+			<div class="stat-desc">Potential carbon storage from restored mangroves</div>
+		</div> -->
+	<!-- 	<div class="stat-row areaStats">
+			<div class="stat-column">
+				<div id="s-Area_ha" class="stat-num">250,000</div>
+				<div class="num-label">Hectares</div>
+			</div>
+			<div class="stat-desc">Current estimated mangrove area</div>
+		</div>
+		<div class="stat-row areaStats">
+			<div class="stat-column">
+				<div id="s-Max_Pot" class="stat-num">100,000</div>
+				<div class="num-label">Hectares</div>
+			</div>
+			<div class="stat-desc">Potential restored mangrove area</div>
+		</div>
+		<div class="stat-row areaStats">
+			<div class="stat-column">
+				<div id="s-Area_Prot" class="stat-num">200,000</div>
+				<div class="num-label">Hectares</div>
+			</div>
+			<div class="stat-desc">Mangroves in protected areas</div>
+		</div>
+		<div class="stat-row" style="display:inline-block; padding:6px 10px;">
+			<span id="country-name" style="font-weight:bold;">Camaroon</span> <span class="storageStats">has an NDC carbon emmission reduction target of <span id="emmisRedTgt">32</span>%</span><span class="areaStats">has has committed  to restore <span id="emmisRedTgt">12</span> million hectares of forest under the Bonn Challenge</span> 
+		</div> -->
+	<h4 style="display:none;">Mangrove Blue Carbon</h4>
+		<!-- bar graph -->
+	<div class="barGraphWrap" style="display:none;">
+		<div class="vertAndLines">
+			<div class="vLabelLineWrap">
+				<div class="vertLbl">High</div><div class="dashedLines"></div>
+			</div>
+			<div class="vLabelLineWrap">
+				<div class="vertLbl"></div><div class="dashedLines"></div>
+			</div>
+			<div class="vLabelLineWrap">
+				<div class="vertLbl">Med</div><div class="dashedLines"></div>
+			</div>
+			<div class="vLabelLineWrap">
+				<div class="vertLbl"></div><div class="dashedLines"></div>
+			</div>
+			<div class="vLabelLineWrap">
+				<div class="vertLbl">Low</div><div class="dashedLines"></div>
+			</div>
+			<div class="vLabelLineWrap">
+				<div class="vertLbl"></div><div class="dashedLines"></div>
+			</div>
+		</div>
+		<div class="barHolder" id ="barHolder">
+			<div class="sumBarsWrap">
+				<div class="sumBars" style="width:60px;"><div class="barLabel"></div></div><div class="smallLabels">Above Ground</div>
+			</div>
+			<div class="sumBarsWrap">
+				<div class="sumBars" style="width:40px; margin-left:-16px;"><div class="barLabel"></div></div><div class="smallLabels"></div>
+			</div>
+		</div>
+		<div id="xLabel" class="xBarGraphLabel"></div>
+		<div class="yBarGraphLabel">Million Megagrams</div>
+	</div>	
+</div>	
+

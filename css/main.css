@@ -1,0 +1,109 @@
+.cmc{
+    position:relative;
+}
+.bc-top-wrap .form-component input[type=radio]~.check, 
+.bc-top-wrap .form-component input[type=checkbox]~.check{
+	top:3px;
+}
+.bc-top-wrap .form-component .form-text{
+    margin-left:2px; margin-right:36px;
+}
+.bc-top-wrap .form-component input[type=radio]:checked~.form-text{
+	color: #101d28;
+}
+.bc-top-wrap .form-component input[type=checkbox]:checked~.form-text{
+	/*color: #438c9d;*/
+}
+.bc-top-wrap .toggle-btn{
+	margin-bottom:-8px;
+}
+.stats-wrap{
+	display:none;
+}
+.stat-row{
+	display:flex; color:#438c9d; padding:6px 0 10px 0; border-bottom:1px solid #ccc; margin:10px 15px 10px 10px; align-items:flex-end;
+}
+.headline-stat{
+	font-size:30px; 
+}
+.stat-desc{
+	font-size:14px; 
+}
+.stat-column{
+	display:flex; flex-direction:column; flex:1; margin-left:10px; 
+}
+.num-label{
+	font-size:13px; margin-top:-7px; 
+}
+.country-summary-wrap{
+	font-size:15px; text-align:center; margin:10px 20px 10px 5px;
+}
+.country-summary-wrap span{
+	font-weight:bold;
+}
+
+/*bar graph stlyes*/
+.graph-header{
+	text-align:center; margin-top:1.5rem;
+}
+.barGraphWrap{
+	display:inline-block; position:relative; height:225px; margin-left:18px;
+}
+.vertandLines{
+	display:inline-block; position:relative; z-index:10;
+}
+.vertLbl{
+	text-align:right; width:30px; display:inline-block;
+}
+.dashedLines{
+	margin-left:5px; width:320px; border-top:1px dashed #777; opacity:0.3; vertical-align:middle; height:2px; display:inline-block;
+}
+.vLabelLineWrap{
+	display:block; height:24px; margin-bottom:7px; position:relative; z-index:10;
+}
+.barHolder{
+	position:absolute; height:156px; left:36px; bottom:62px;
+}
+.sumBarsWrap{
+	bottom:0; width:31px; display:inline-block;
+}
+.sumBars{
+	bottom:-3px; width:31px; -moz-box-shadow: inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4), 2px 1px 3px rgba(0, 0, 0, .4);
+	-webkit-box-shadow: inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4), 2px 1px 3px rgba(0, 0, 0, .4);
+	box-shadow: inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4), 0 1px 1px rgba(16,22,26,.2); position:absolute; margin-left:10px;
+}
+.smallLabels{
+	position:absolute; bottom:-46px; height:44px; text-align:center; 
+	margin:-2px; padding-top:4px; line-height:1.2;
+}
+.lastLabel{
+	border-right:1px solid rgba(0, 0, 0, 0); padding-left:2px;
+}
+.xBarGraphLabel{
+	position:relative; top:11px; text-align:center; font-weight:bold; display:none;
+}
+.yBarGraphLabel{
+	position:relative; bottom:108px; left:-187px; text-align:center; transform:rotate(-90deg); font-weight:bold;
+}	
+.barLabel{
+	text-align:center; position:relative; top:-20px; font-weight:bold; font-size:14px;
+}
+.grad-wrap{
+	display:flex; margin:4px 0 0 20px;
+}
+.leg-gradient{
+	height:15px; width:100px; margin:2px 4px 0 4px; 
+}
+.grad-4{
+	background:linear-gradient(to right, rgb(229,213,242) , rgb(93,44,112));
+}
+.grad-3{
+	background:linear-gradient(to right, rgb(240,236,170) , rgb(102,72,48));
+}
+.grad-2{
+	background:linear-gradient(to right, rgb(220,225,233) , rgb(34,120,51));
+}
+.leg-protected{
+	height:20px; width:26px; background: repeating-linear-gradient(0deg, #22c6fc, #22c6fc 2px, #fff 2px, #fff 6px ); 
+	border:1pt solid #22c6fc; margin:2px 0px 0px 1px; border-radius:5px;
+}
