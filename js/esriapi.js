@@ -50,7 +50,13 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 							$("#" + t.id + "countrySelect").append("<option value='"+c+"'>"+c+"</option>")
 						}
 					})			
-					$("#" + t.id + "countrySelect").trigger("chosen:updated");
+					$("#" + t.id + "countrySelect").val(t.obj.country).trigger("chosen:updated").change();
+					// Trigger click on map layers inputs
+					var ar = [];
+					ar.push.apply(ar, t.obj.visibleLayers);
+					$.each(ar,function(i,v){
+						$("#" + t.id + "cmc input[value='" + v + "']").trigger("click");
+					})
 				});	
 				t.map.setMapCursor("pointer");
 			},

@@ -6,10 +6,11 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 
         return declare(null, {
 			eventListeners: function(t){
-				$("#" + t.id + "countrySelect").chosen({allow_single_deselect:true, width:"98%"})
+				$("#" + t.id + "countrySelect").chosen({allow_single_deselect:false, width:"98%"})
 					.change(function(c){
 						if (c.target.value.length > 0){
 							var val = c.target.value;
+							t.obj.country = val;
 							var q = new Query();
 							var qt = new QueryTask(t.url + "/0" );
 							q.where = "CNTRY_NAME = '"+val+"'";
