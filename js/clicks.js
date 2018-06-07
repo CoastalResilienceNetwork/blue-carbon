@@ -14,15 +14,51 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 							var q = new Query();
 							var qt = new QueryTask(t.url + "/0" );
 							q.where = "CNTRY_NAME = '"+val+"'";
-							q.returnGeometry =true;
+							q.returnGeometry = true;
 							q.outFields = ["*"];
 							t.atts = [];
 							qt.execute(q, function(e){
+								// add graphic
 								t.map.graphics.clear();
 								var f = e.features[0];
+								t.atts = f.attributes;
+								// graph numbers
+								var totc = t.atts["Total_C"];
+								var ta = 0;
+								var ndct = t.atts["NDC_Target"];
+								var na = 0;
+								var pp = 0;
+								if (ndct != -999){
+									$("#"+t.id+"ndcTargetBar").show();
+									if (totc > ndct){
+										ta = 100;
+										pp = t.atts["Pcnt_prot"];
+										na = ndct/totc*100;
+									}else{
+										na = 100;
+										ta = totc/ndct*100;
+										if (ta < 5){ta=4}
+										pp = ta * t.atts["Pcnt_prot"] / 100;
+									}
+								}else{
+									$("#"+t.id+"ndcTargetBar").hide();
+									ta = 100;
+									pp = t.atts["Pcnt_prot"];
+									na = 0;
+								}
+								var a = [ta,pp,na];
+								var b = [totc,ndct];	
+								t.clicks.updateBarGraphs(a,b,t);
+								
 								f.setSymbol(t.sym1);
 								t.map.graphics.add(f);
-								t.map.setExtent(f.geometry.getExtent(), true)
+								// extent query
+								var qt1 = new QueryTask(t.url + "/5");
+								qt1.execute(q, function(e1){
+									var f1 = e1.features[0];
+									t.map.setExtent(f1.geometry.getExtent(), true)
+								})
+								// handle stats
 								$("#" + t.id + "stats-wrap .stat-num").each(function(i,v){
 									var field = v.id.split("-").pop()
 									var r = 0
@@ -35,22 +71,7 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 									$(v).html( t.clicks.numberWithCommas(r) )	
 								})
 								$("#" + t.id + "stats-wrap").show();
-								// set bar ranges
-								// var area = f.attributes.Area_ha;
-								// var prot = f.attributes.Area_Prot;
-								// var protPer = prot/area*100;
-								// console.log(protPer)
-								// var score = 0;
-								// if (area < 624754.602000){score = 1}
-								// if (area >= 1249502.644000 && area < 1874250.686000){score = 2}
-								// if (area >= 1874250.686000 && area < 2498998.728000){score = 3}
-								// if (area >= 2498998.728000 && area < 3123746.770000){score = 4}
-								// if (area >= 3123746.770000 ){score = 5}
-								// var areaHeight = score/5*100;
-								// var protHeight = score/5*protPer;
-								// var a = [areaHeight,protHeight];
-								// console.log(a)
-								// t.clicks.updateBarGraphs(a,t);
+								
 							})
 							t.map.graphics.clear();
 						}else{
@@ -119,25 +140,15 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 						$(v).css({'opacity': '1', 'border-top': '2px solid #3d3d3d'})
 					}
 				})
-				// calculate width of bars
-				// var bars = $('.barHolder').find('.sumBarsWrap');
-				// var lw = $('.dashedLines').css('width').slice(0,-2)
-				// var sLw = lw/bars.length;
-				// var bWw = sLw - bars.length;
-				// $('.smallLabels').css('width', sLw + 'px')
-				// $('.sumBarsWrap').css('width', bWw + 'px')
-				// $('.sumBars').css('width', bWw-20 + 'px')
-				
-				var a = [30,25];
-				t.clicks.updateBarGraphs(a,t);
 			},
-			updateBarGraphs: function(a,t){
-				var colors = ['#fff74c','#ed9a50','#e74949','#0096d6','#f4f4f4']
+			updateBarGraphs: function(a,b,t){
+				var colors = ['#60a6c7','#a6c760','rgba(255,255,255,0)','#0096d6','#f4f4f4']
 				// update bar graph
 				$('.barHolder').find('.sumBars').each(function(i,v){
 					$(v).css("background-color", colors[i]);
 					$(v).animate({ height: a[i] + '%'});
-					$(v).find(".barLabel").html( a[i] )
+					//var n = t.clicks.numberWithCommas(b[i]);
+					// $(v).find(".barLabel").html( "NDC Target" )
 				});
 			},
 			numberWithCommas: function(x){

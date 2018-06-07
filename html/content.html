@@ -47,6 +47,57 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		</div>	
 		<div class="stat-row storageStats">
 			<div style="line-height:1.2; flex:2">
+				<div class="stat-desc">NDC carbon reduction target</div>
+				<div><span id="s-NDC_Target" class="stat-num headline-stat"></span> <span class="stat-desc">Mg</span></div>
+			</div>
+		</div>
+		<div style="/*border-bottom:1px solid #ccc;*/ margin:10px 15px 10px 10px; padding:6px 0 10px 0; display:flex;">	
+			<!-- bar graph -->
+			<div class="barGraphWrap" >
+				<div class="vertAndLines">
+					<div class="vLabelLineWrap">
+						<div class="vertLbl"></div><div class="dashedLines"></div>
+					</div>
+					<div class="vLabelLineWrap">
+						<div class="vertLbl"></div><div class="dashedLines"></div>
+					</div>
+					<div class="vLabelLineWrap">
+						<div class="vertLbl"></div><div class="dashedLines"></div>
+					</div>
+					<div class="vLabelLineWrap">
+						<div class="vertLbl"></div><div class="dashedLines"></div>
+					</div>
+					<div class="vLabelLineWrap">
+						<div class="vertLbl"></div><div class="dashedLines"></div>
+					</div>
+				</div>
+				<div class="barHolder" id ="barHolder">
+					<div class="sumBarsWrap">
+						<div class="sumBars" style="width:58px; margin-left:-23px;"><div class="barLabel1" style="display:none;">Total mangrove<br>carbon storage</div></div><div class="smallLabels"></div>
+					</div>
+					<div class="sumBarsWrap">
+						<div class="sumBars" style="width:44px; margin-left:-16px;"><div class="barLabel" style="display:none;">Protected mangroves</div></div><div class="smallLabels"></div>
+					</div>
+					<div class="sumBarsWrap" id="ndcTargetBar">
+						<div class="sumBars" style="width:60px; margin-left:-23px; box-shadow:none;"><div class="barLabel">NDC target</div></div><div class="smallLabels"></div>
+					</div>
+				</div>
+				<!-- <div id="xLabel" class="xBarGraphLabel"></div>
+				<div class="yBarGraphLabel" style="display:none;">Mangrove carbon storage</div> -->
+			</div>	
+			<div style="margin:auto 0px auto 90px;">
+				<div style="display:flex; align-items:center; margin-bottom:10px;">
+					<div class="sumBarsLeg" style="background:#60a6c7;"></div>
+					<div style="flex:2; line-height:1;">Total mangrove carbon storage</div>
+				</div>
+				<div style="display:flex; align-items:center;">
+					<div class="sumBarsLeg" style="background:#a6c760;"></div>
+					<div style="flex:2; line-height:1;">Percent of mangroves in protected areas (<span id="r-Pcnt_prot" class="stat-num" style="font-weight:bold"></span>%)</div>
+				</div>
+			</div>	
+		</div>	
+		<div class="stat-row storageStats" style="display:none;">
+			<div style="line-height:1.2; flex:2">
 				<div class="stat-desc">Estimated mangrove area</div>
 				<div><span id="s-Area_ha" class="stat-num headline-stat"></span> <span class="stat-desc">ha</span></div>
 			</div>
@@ -92,39 +143,6 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		<div class="stat-row" style="display:inline-block; padding:6px 10px;">
 			<span id="country-name" style="font-weight:bold;">Camaroon</span> <span class="storageStats">has an NDC carbon emmission reduction target of <span id="emmisRedTgt">32</span>%</span><span class="areaStats">has has committed  to restore <span id="emmisRedTgt">12</span> million hectares of forest under the Bonn Challenge</span> 
 		</div> -->
-	<h4 style="display:none;">Mangrove Blue Carbon</h4>
-		<!-- bar graph -->
-	<div class="barGraphWrap" style="display:none;">
-		<div class="vertAndLines">
-			<div class="vLabelLineWrap">
-				<div class="vertLbl">High</div><div class="dashedLines"></div>
-			</div>
-			<div class="vLabelLineWrap">
-				<div class="vertLbl"></div><div class="dashedLines"></div>
-			</div>
-			<div class="vLabelLineWrap">
-				<div class="vertLbl">Med</div><div class="dashedLines"></div>
-			</div>
-			<div class="vLabelLineWrap">
-				<div class="vertLbl"></div><div class="dashedLines"></div>
-			</div>
-			<div class="vLabelLineWrap">
-				<div class="vertLbl">Low</div><div class="dashedLines"></div>
-			</div>
-			<div class="vLabelLineWrap">
-				<div class="vertLbl"></div><div class="dashedLines"></div>
-			</div>
-		</div>
-		<div class="barHolder" id ="barHolder">
-			<div class="sumBarsWrap">
-				<div class="sumBars" style="width:60px;"><div class="barLabel"></div></div><div class="smallLabels">Above Ground</div>
-			</div>
-			<div class="sumBarsWrap">
-				<div class="sumBars" style="width:40px; margin-left:-16px;"><div class="barLabel"></div></div><div class="smallLabels"></div>
-			</div>
-		</div>
-		<div id="xLabel" class="xBarGraphLabel"></div>
-		<div class="yBarGraphLabel">Million Megagrams</div>
-	</div>	
+
 </div>	
 
