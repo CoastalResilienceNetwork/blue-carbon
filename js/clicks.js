@@ -21,34 +21,8 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 								// add graphic
 								t.map.graphics.clear();
 								var f = e.features[0];
-								t.atts = f.attributes;
-								// graph numbers
-								var totc = t.atts["Total_C"];
-								var ta = 0;
-								var ndct = t.atts["NDC_Target"];
-								var na = 0;
-								var pp = 0;
-								if (ndct != -999){
-									$("#"+t.id+"ndcTargetBar").show();
-									if (totc > ndct){
-										ta = 100;
-										pp = t.atts["Pcnt_prot"];
-										na = ndct/totc*100;
-									}else{
-										na = 100;
-										ta = totc/ndct*100;
-										if (ta < 5){ta=4}
-										pp = ta * t.atts["Pcnt_prot"] / 100;
-									}
-								}else{
-									$("#"+t.id+"ndcTargetBar").hide();
-									ta = 100;
-									pp = t.atts["Pcnt_prot"];
-									na = 0;
-								}
-								var a = [ta,pp,na];
-								var b = [totc,ndct];	
-								t.clicks.updateBarGraphs(a,b,t);
+								t.atts = f.attributes;	
+								t.clicks.updateBarGraphs(t);
 								
 								f.setSymbol(t.sym1);
 								t.map.graphics.add(f);
@@ -59,19 +33,24 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 									t.map.setExtent(f1.geometry.getExtent(), true)
 								})
 								// handle stats
+								$("#"+t.id+"ndcLabel").show();
 								$("#" + t.id + "stats-wrap .stat-num").each(function(i,v){
 									var field = v.id.split("-").pop()
 									var r = 0
-									if (field == "Pcnt_prot"){
-										r = Math.round(f.attributes[field]*100)/100
+									if (field == "NDC_Target" && t.atts[field] == -999){
+										$(v).html("No NDC Target");
+										$("#"+t.id+"ndcLabel").hide();	
 									}else{
-										r = Math.round(f.attributes[field])	
-									}
-									
-									$(v).html( t.clicks.numberWithCommas(r) )	
+										r = Math.round(t.atts[field])	
+										$(v).html( t.clicks.numberWithCommas(r) )
+									}	
 								})
 								$("#" + t.id + "stats-wrap").show();
-								
+								if (t.atts["NDC_Text"]){
+									$("#"+t.id+"NDC_Text").html(t.atts["NDC_Text"])
+								}else{
+									$("#"+t.id+"NDC_Text").html("");
+								}
 							})
 							t.map.graphics.clear();
 						}else{
@@ -141,14 +120,39 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					}
 				})
 			},
-			updateBarGraphs: function(a,b,t){
+			updateBarGraphs: function(t){
+				var totc = t.atts["Total_C"];
+				var ta = 0;
+				var ndct = t.atts["NDC_Target"];
+				var na = 0;
+				var pp = 0;
+				if (ndct != -999){
+					$("#"+t.id+"ndcTargetBar").show();
+					if (totc > ndct){
+						ta = 100;
+						pp = t.atts["Pcnt_prot"];
+						na = ndct/totc*100;
+						if (na < 4){na=3}
+					}else{
+						na = 100;
+						ta = totc/ndct*100;
+						if (ta < 5){ta=4}
+						pp = ta * t.atts["Pcnt_prot"] / 100;
+					}
+				}else{
+					$("#"+t.id+"ndcTargetBar").hide();
+					ta = 100;
+					pp = t.atts["Pcnt_prot"];
+					na = 0;
+				}
+				var a = [ta,pp,na];
+				var b = [totc,ndct];
+
 				var colors = ['#60a6c7','#a6c760','rgba(255,255,255,0)','#0096d6','#f4f4f4']
 				// update bar graph
 				$('.barHolder').find('.sumBars').each(function(i,v){
 					$(v).css("background-color", colors[i]);
 					$(v).animate({ height: a[i] + '%'});
-					//var n = t.clicks.numberWithCommas(b[i]);
-					// $(v).find(".barLabel").html( "NDC Target" )
 				});
 			},
 			numberWithCommas: function(x){
