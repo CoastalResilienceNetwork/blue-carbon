@@ -110,12 +110,6 @@
 .leg-gradient{
 	height:15px; width:100px; margin:2px 4px 0 4px; 
 }
-.grad-4{
-	background:linear-gradient(to right, rgb(40,146,199) , rgb(250,250,100) , rgb(232,16,20));
-}
-.grad-3{
-	background:linear-gradient(to right, rgb(40,146,199) , rgb(250,250,100) , rgb(232,16,20));
-}
 .grad-2{
 	background:linear-gradient(to right, rgb(40,146,199) , rgb(250,250,100) , rgb(232,16,20));
 }

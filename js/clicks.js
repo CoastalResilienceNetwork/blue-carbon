@@ -60,11 +60,11 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					});	
 				$("#" + t.id + "cmc input").click(function(c){
 					if (c.currentTarget.name == "cs"){
-						var a = ["grad-2","grad-3","grad-4"];
-						$.each(a,function(i,v){
-							$("#" + t.id + "leg-gradient").removeClass(v)
-						})
-						$("#" + t.id + "leg-gradient").addClass("grad-" + c.currentTarget.value)
+						var lv = {val2:[189,15],val3:[791,53],val4:[862,125]}
+						var lo = "val" + c.currentTarget.value;
+						$("#" + t.id + "leg-high").html(lv[lo][0])
+						$("#" + t.id + "leg-low").html(lv[lo][1])
+						console.log(lv[lo][0])
 					}else{
 						if (c.currentTarget.checked){
 							$("#" + t.id + "leg-protected").show();	

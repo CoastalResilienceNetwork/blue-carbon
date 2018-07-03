@@ -5,9 +5,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 <div id="top-wrap" class="bc-top-wrap">
 	<div style="display:flex; align-items:center;">
 		<h4>Mangrove Carbon Storage</h4>
-		<div class="grad-wrap">
-			<div>Low</div><div class="leg-gradient" id="leg-gradient"></div><div>High</div>
-		</div>
+		
 	</div>
 	<div id="cmc" class="cmc">
 		<label class="form-component" for="cs3" style="flex:2;">
@@ -19,7 +17,13 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		<label class="form-component" for="cs2" style="flex:2;">
 			<input type="radio" id="cs2" name="cs" value="3"><div class="check"></div><span class="form-text">Below Ground</span>
 		</label>
-		
+		<div style="display:flex; margin:-5px 0 14px 0;">
+			<div class="grad-wrap">
+				<div>Low (<span id="leg-low"></span> Mg/Km<sup>2</sup>)</div>
+				<div class="leg-gradient grad-2" id="leg-gradient"></div>
+				<div>High (<span id="leg-high"></span> Mg/Km<sup>2</sup>)</div>
+			</div>
+		</div>	
 	
 		<div style="display:flex; margin-top:5px;">	
 			<label class="form-component" for="pa1">
