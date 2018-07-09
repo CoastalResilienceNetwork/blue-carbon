@@ -93,6 +93,10 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					$(".areaStats, .storageStats").hide();
 					$("." + t.obj.viewStatsOn).show();
 				});	
+				$(".infoDiv img").click(function(c){
+					$(".infoOpen, .infoClose").toggle();
+					$("#" + t.id + "infoBox").slideToggle();
+				})
 				// map clicks
 				t.map.on("click",function(c){
 					if (t.open == "yes"){

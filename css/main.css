@@ -4,6 +4,12 @@
 .bc-top-wrap h4{
 	margin-top:1rem;
 }
+.infoDiv{
+	margin-left:190px;  cursor:pointer;
+}
+.infoClose, .infoBox{
+	display:none;
+}
 .bc-top-wrap .form-component input[type=radio]~.check, 
 .bc-top-wrap .form-component input[type=checkbox]~.check{
 	top:3px;
