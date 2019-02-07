@@ -60,11 +60,10 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					});	
 				$("#" + t.id + "cmc input").click(function(c){
 					if (c.currentTarget.name == "cs"){
-						var lv = {val2:[189,15],val3:[791,53],val4:[862,125]}
+						var lv = {val2:[700,50],val3:[3200,150],val4:[3590,50]}
 						var lo = "val" + c.currentTarget.value;
-						$("#" + t.id + "leg-high").html(lv[lo][0])
-						$("#" + t.id + "leg-low").html(lv[lo][1])
-						console.log(lv[lo][0])
+						$("#" + t.id + "leg-high").html(t.clicks.numberWithCommas(lv[lo][0]))
+						$("#" + t.id + "leg-low").html(t.clicks.numberWithCommas(lv[lo][1]))
 					}else{
 						if (c.currentTarget.checked){
 							$("#" + t.id + "leg-protected").show();	
@@ -88,7 +87,6 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 				})
 				$("#" + t.id + "viewStatsOnToggle input[name='so']").click(function(c){
-					console.log("click2")
 					t.obj.viewStatsOn = c.currentTarget.value;
 					$(".areaStats, .storageStats").hide();
 					$("." + t.obj.viewStatsOn).show();
@@ -114,6 +112,44 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					}
 				})
 
+				$(`#${t.id}restoreBar`).hover(
+					function(){
+						$(`#${t.id}restoreVal`).css("text-shadow","1px 1px 2px black, 0 0 7px #00c4cd")
+					},function(){
+						$(`#${t.id}restoreVal`).css("text-shadow","none")
+					}
+				);
+				$(`#${t.id}avoidBar`).hover(
+					function(){
+						$(`#${t.id}avoidVal`).css("text-shadow","1px 1px 2px #060080, 0 0 7px #00c4cd")
+					},function(){
+						$(`#${t.id}avoidVal`).css("text-shadow","none")
+					}
+				);
+				$(`.rValHl`).hover(
+					function(){
+						$(`#${t.id}restoreBar`).css("box-shadow","0 0 2px 2px #00c4cd, inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4)")
+					},function(){
+						$(`#${t.id}restoreBar`).css("box-shadow","inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4)")
+					}
+				);
+				$(`.aValHl`).hover(
+					function(){
+						$(`#${t.id}avoidBar`).css("box-shadow","0 0 2px 2px #00c4cd")
+					},function(){
+						$(`#${t.id}avoidBar`).css("box-shadow","none")
+					}
+				);
+				$(`.tValHl`).hover(
+					function(){
+						$(`.barWrapper`).css("box-shadow","0 0 2px 2px #00c4cd")
+						$(`.plusSign`).css({"font-weight": "bold", "text-shadow": "0 0 7px #00c4cd"})
+					},function(){
+						$(`.barWrapper`).css("box-shadow","none")
+						$(`.plusSign`).css({"font-weight": "normal", "text-shadow": "none"})
+					}
+				);
+
 
 				// Bar chart
 				// symbolize x-axis
@@ -125,39 +161,38 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 				})
 			},
 			updateBarGraphs: function(t){
-				var totc = t.atts["Total_C"];
-				var ta = 0;
-				var ndct = t.atts["NDC_Target"];
-				var na = 0;
-				var pp = 0;
-				if (ndct != -999){
-					$("#"+t.id+"ndcTargetBar").show();
-					if (totc > ndct){
-						ta = 100;
-						pp = t.atts["Pcnt_prot"];
-						na = ndct/totc*100;
-						if (na < 4){na=3}
-					}else{
-						na = 100;
-						ta = totc/ndct*100;
-						if (ta < 5){ta=4}
-						pp = ta * t.atts["Pcnt_prot"] / 100;
-					}
+				if (t.atts["NDC_Target"] == -999){
+					$(`.wNdc`).hide();
+					$(`.woNdc`).show();
+					$(`.ndcWrap`).css("left",`0%`);
 				}else{
-					$("#"+t.id+"ndcTargetBar").hide();
-					ta = 100;
-					pp = t.atts["Pcnt_prot"];
-					na = 0;
-				}
-				var a = [ta,pp,na];
-				var b = [totc,ndct];
+					$(`.woNdc`).hide();
+					$(`.wNdc`).show();
+					const rv = t.clicks.numberWithCommas(Math.round(t.atts["Tot_Restore"]));
+					const av = t.clicks.numberWithCommas(Math.round(t.atts["Tot_Avd_Loss"]));
+					const tv = t.clicks.numberWithCommas(Math.round(t.atts["Tot_Opp"]));
+					const ndc = t.clicks.numberWithCommas(Math.round(t.atts["NDC_Target"]));
+					const ndcy = t.atts["NDC_Year"];
+					$(`#${t.id}restoreVal`).html(rv)
+					$(`#${t.id}avoidVal`).html(av)
+					$(`#${t.id}totVal`).html(tv)
+					$(`#${t.id}ndcVal`).html(ndc)
+					$(`#${t.id}ndcYear`).html(ndcy)
 
-				var colors = ['#60a6c7','#a6c760','rgba(255,255,255,0)','#0096d6','#f4f4f4']
-				// update bar graph
-				$('.barHolder').find('.sumBars').each(function(i,v){
-					$(v).css("background-color", colors[i]);
-					$(v).animate({ height: a[i] + '%'});
-				});
+					if (t.atts["NDC_Text"]){
+						$(`#${t.id}ndcText`).html(t.atts["NDC_Text"])
+					}else{
+						$(`#${t.id}ndcText`).html("NDC Target");
+					}
+
+					const rw = t.atts["Tot_Restore"] / t.atts["Tot_Opp"] * 100;
+					const aw = t.atts["Tot_Avd_Loss"] / t.atts["Tot_Opp"] * 100;
+					const ndcw = Math.round(t.atts["NDC_Target"] / t.atts["Tot_Opp"] * 100);
+					$(`#${t.id}restoreBar`).css("width",`${rw}%`);
+					$(`#${t.id}avoidBar`).css("width",`${aw}%`);
+					$(`#${t.id}ndcPer`).html(ndcw)
+					$(`.ndcLine, .ndcContent`).css("left",`${ndcw}%`);
+				}
 			},
 			numberWithCommas: function(x){
 				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

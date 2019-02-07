@@ -7,6 +7,9 @@
 .infoDiv{
 	margin-left:190px;  cursor:pointer;
 }
+.bc-top-wrap .chosen-container .chosen-results{
+	max-height:140px;
+}
 .infoClose{
 	display:none;
 }
@@ -36,10 +39,10 @@
     padding: 3px 0 0 10px;
  } 
 .stats-wrap{
-	display:none;
+	display:none; margin-top:24px;
 }
 .stat-row{
-	display:flex; color:#438c9d; padding:6px 0 10px 0; border-bottom:1px solid #ccc; margin:10px 15px 10px 10px; align-items:flex-end;
+	display:flex; color:#438c9d; padding:0px 0 10px 0; margin:-5px 15px 10px 10px; align-items:flex-end;
 }
 .headline-stat{
 	font-size:30px; 
@@ -91,8 +94,32 @@
 	box-shadow: inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4), 0 1px 1px rgba(16,22,26,.2); position:absolute; margin-left:10px;
 }
 .sumBarsLeg{
-	width:30px; height:16px; margin-right:6px;
-	box-shadow: inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4), 0 1px 1px rgba(16,22,26,.2);
+	margin-right:6px; width:18px; height:18px; border: 1pt solid #333;
+    box-shadow: inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4);
+    
+}
+.raValsLbl{
+	line-height:1.1; margin-bottom:14px;
+}
+.raValsTotLbl{
+	font-weight:bold; color:#438c9d; line-height:1.1; min-width:165px;
+}
+.raVals{
+	font-weight:bold; font-size:28px; color:#438c9d;
+}
+.totArrowLeft{
+	border-top:1pt solid #438c9d; border-left: 1pt solid #438c9d;
+    margin-top:20px; margin-right:4px; height:20px; width:100%;
+}
+.totArrowRight{
+	border-top:1pt solid #438c9d; border-right: 1pt solid #438c9d;
+    margin-top:13px; height:20px; width:29px;
+}
+.plusSign{
+	position:absolute; top:60px; left:0px;
+}
+.rValHl, .aValHl, .tValHl{
+	cursor:help;
 }
 .smallLabels{
 	position:absolute; bottom:-46px; height:44px; text-align:center; 
@@ -114,7 +141,7 @@
 	text-align:left; position:relative; top:-39px; width:184px; border-bottom:solid 1px #333; left:-124px;
 }
 .grad-wrap{
-	display:flex; margin:4px 0 0 20px;
+	display:flex; margin:4px 0 0 60px;
 }
 .leg-gradient{
 	height:15px; width:100px; margin:2px 4px 0 4px; 
@@ -126,3 +153,29 @@
 	height:20px; width:26px; background: repeating-linear-gradient(0deg, #22c6fc, #22c6fc 2px, #fff 2px, #fff 6px ); 
 	border:1pt solid #22c6fc; margin:2px 0px 0px 1px; border-radius:5px;
 }
+/*Horizonatal bar wrap*/
+.barWrapper{
+	display:flex; height:20px; margin-left:10px; width:379px; margin-top:-7px; position:relative;
+}
+.leftBar{
+	width:75%; background:#cd7000; box-shadow: inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4);
+	border:1pt solid #333; transition:width 0.5s; cursor:help;
+}
+.rightBar{
+	background:#804600; width:25%; cursor:help;
+	border:1pt solid #333; border-left:none; transition:width 0.5s;
+}
+.ndcWrap{
+	position:absolute; left:50%; transition:left 0.5s;
+}
+.ndcLine{
+	height:34px; border-left:1pt solid black; padding:25px 0 0 2px;
+	position:absolute; left:0%; transition:left 0.5s;
+}
+.ndcContent{
+	position:absolute; top:23px; margin-left:3px; transition:left 0.5s;
+}
+.wNdc, .woNdc{
+	margin-left:-8px; margin-top:10px; color:#438c9d; line-height:1.3;
+}
+
