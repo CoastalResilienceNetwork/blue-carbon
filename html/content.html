@@ -14,11 +14,8 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 			</div>
 		</div>
 		<div id="infoBox" class="infoBox">
-			<p>Total mangrove carbon storage represents the sum of the aboveground carbon values and the soil organic carbon values attributed to mangrove forests. Values are expressed as Mg (Megagrams) per square kilometer. 1 Megagram is equal to 1 metric tonne.</p>
-			<p>Above-ground estimates of mangrove carbon are derived from Hutchison et al. (2013). This model used field data on mangrove storage and fluxes from around the world, based on a literature search. Two sets of climatic variables, temperature and precipitation, were then used as predictors to develop a global model of above-ground biomass. While the original study projected this model over a mangrove map developed by Spalding et al. (2010), for the purpose of this analysis, the model was re-projected over the Giri et al. (2011) mangrove map, using the methodology described in Sanderman et al. (2018) to ensure coverage consistent with the below-ground dataset.  Conversion factors to convert mangrove biomass to carbon values range from .45  to .50.  (Howard et al. 2014). For this analysis, a mean conversion value of .475 was used after Hamilton and Friess (2016).</p>
-			<p>Soil organic carbon data are from Sanderman et al. (2018), which employed a machine-learning statistical model applied to a database of soil carbon measurements, resulting in a model of soil carbon density. This model was then projected over a dataset of global mangrove distribution from the year 2000 (Giri et al. 2011).</p>
-			<p>Nationally Determined Commitment (NDC) refers to the committed emission reduction as submitted to the Paris Climate Agreement. Values are expressed in metric tonnes of carbon per year.</p>
-			<p>Percent of mangrove within a protected area is based on the total mangrove area within a jurisdiction that fall within a protected area, as defined by the World Database of Protected Areas (UNEP-WCMC and IUCN 2018).</p>
+			<p>Wetlandsare among the most carbon-rich ecosystemsin the world, and mangroves represent an especially rich source of Blue Carbon (carbon stored and sequestered by coastal and marine ecosystems). Under the Paris Climate Agreement, countries commit to a nationally determined contribution (NDC) which determine and define national climate goals and action plans. Conserving and restoring wetlands such as mangrovesrepresentnatural climate solution (NCS) pathways towards meeting NDC targets.</p>
+			<p>This app demonstrates the potential role of mangrove NCS in contributing to and enhancing climate mitigation ambition in countries with mangrove habitats. Contributions from aboveground biomass (from Simard et al., 2019) and soil (Sanderman et al., 2018)are summed to derive the total mangrove carbon storage by country. The Blue Carbon opportunity from mangroves represents the Blue Carbon that can be gained on an annual basis through restoration efforts plus the Blue Carbon from annual avoided loss. These values are derived from mangrove extent estimates from Global Mangrove Watch. Protected area data are from World Database of Protected Areas (UNEP-WCMC and IUCN 2018).See <a href="plugins/blue-carbon/Blue_Carbon_App_Metadata.pdf" target="_blank">this document</a> for more detailed methodology and sources.</p>
 		</div>
 		<div id="cmc" class="cmc">
 			<label class="form-component" for="cs3" style="flex:2;">
@@ -57,7 +54,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 			<div class="stat-row storageStats">
 				<div style="line-height:1.2; flex:2">
 					<!-- <div class="stat-desc">Total mangrove carbon storage</div> -->
-					<div><span id="s-Total_C" class="stat-num headline-stat"></span> <span class="stat-desc">Mg</span></div>
+					<div><span id="s-Total_C" class="stat-num headline-stat"></span> <span class="stat-desc">MtCO<sub>2</sub>e</span></div>
 				</div>
 				<div style="margin-left:10px; text-align:right;">
 					<div class="stat-desc"><span id="s-AG_Carbon_Per" class="stat-num stat-desc" style="font-weight:bold"></span>% Above ground</div>
