@@ -91,7 +91,7 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					$(".areaStats, .storageStats").hide();
 					$("." + t.obj.viewStatsOn).show();
 				});	
-				$(".infoDiv img").click(function(c){
+				$(".infoDiv i").click(function(c){
 					$(".infoOpen, .infoClose").toggle();
 					$("#" + t.id + "infoBox").slideToggle();
 				})
@@ -111,54 +111,6 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 						})
 					}
 				})
-
-				$(`#${t.id}restoreBar`).hover(
-					function(){
-						$(`#${t.id}restoreVal`).css("text-shadow","1px 1px 2px black, 0 0 7px #00c4cd")
-					},function(){
-						$(`#${t.id}restoreVal`).css("text-shadow","none")
-					}
-				);
-				$(`#${t.id}avoidBar`).hover(
-					function(){
-						$(`#${t.id}avoidVal`).css("text-shadow","1px 1px 2px #060080, 0 0 7px #00c4cd")
-					},function(){
-						$(`#${t.id}avoidVal`).css("text-shadow","none")
-					}
-				);
-				$(`.rValHl`).hover(
-					function(){
-						$(`#${t.id}restoreBar`).css("box-shadow","0 0 2px 2px #00c4cd, inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4)")
-					},function(){
-						$(`#${t.id}restoreBar`).css("box-shadow","inset 1px 2px 2px rgba(255, 255, 255, .4), inset -1px -1px 2px rgba(0, 0, 0, .4)")
-					}
-				);
-				$(`.aValHl`).hover(
-					function(){
-						$(`#${t.id}avoidBar`).css("box-shadow","0 0 2px 2px #00c4cd")
-					},function(){
-						$(`#${t.id}avoidBar`).css("box-shadow","none")
-					}
-				);
-				$(`.tValHl`).hover(
-					function(){
-						$(`.barWrapper`).css("box-shadow","0 0 2px 2px #00c4cd")
-						$(`.plusSign`).css({"font-weight": "bold", "text-shadow": "0 0 7px #00c4cd"})
-					},function(){
-						$(`.barWrapper`).css("box-shadow","none")
-						$(`.plusSign`).css({"font-weight": "normal", "text-shadow": "none"})
-					}
-				);
-
-
-				// Bar chart
-				// symbolize x-axis
-				var l = $('.vertAndLines').find('.dashedLines');  
-				$.each(l, function(i,v){
-					if (i == l.length - 1){
-						$(v).css({'opacity': '1', 'border-top': '2px solid #3d3d3d'})
-					}
-				})
 			},
 			updateBarGraphs: function(t){
 				if (t.atts["NDC_Target"] == -999){
@@ -168,10 +120,10 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 				}else{
 					$(`.woNdc`).hide();
 					$(`.wNdc`).show();
-					const rv = t.clicks.numberWithCommas(Math.round(t.atts["Tot_Restore"]));
-					const av = t.clicks.numberWithCommas(Math.round(t.atts["Tot_Avd_Loss"]));
-					const tv = t.clicks.numberWithCommas(Math.round(t.atts["Tot_Opp"]));
-					const ndc = t.clicks.numberWithCommas(Math.round(t.atts["NDC_Target"]));
+					const rv = t.clicks.numberWithCommas(t.atts["Tot_Restore"].toFixed(3));
+					const av = t.clicks.numberWithCommas(t.atts["Tot_Avd_Loss"].toFixed(3));
+					const tv = t.clicks.numberWithCommas(t.atts["Tot_Opp"].toFixed(3));
+					const ndc = t.clicks.numberWithCommas(t.atts["NDC_Target"].toFixed(3));
 					const ndcy = t.atts["NDC_Year"];
 					$(`#${t.id}restoreVal`).html(rv)
 					$(`#${t.id}avoidVal`).html(av)
@@ -188,10 +140,7 @@ function ( declare, Query, QueryTask, graphicsUtils ) {
 					const rw = t.atts["Tot_Restore"] / t.atts["Tot_Opp"] * 100;
 					const aw = t.atts["Tot_Avd_Loss"] / t.atts["Tot_Opp"] * 100;
 					const ndcw = Math.round(t.atts["NDC_Target"] / t.atts["Tot_Opp"] * 100);
-					$(`#${t.id}restoreBar`).css("width",`${rw}%`);
-					$(`#${t.id}avoidBar`).css("width",`${aw}%`);
 					$(`#${t.id}ndcPer`).html(ndcw)
-					$(`.ndcLine, .ndcContent`).css("left",`${ndcw}%`);
 				}
 			},
 			numberWithCommas: function(x){

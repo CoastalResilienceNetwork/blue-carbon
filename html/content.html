@@ -7,10 +7,12 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		<div style="display:flex; align-items:center;">
 			<h4>View Mangrove Carbon Storage</h4>
 			<div class="infoDiv infoOpen">
-				<img src="plugins/blue-carbon/images/infoBlue.png">
+				<i class="fa fa-info-circle feInfo feInfoOpen"></i>
+				<!-- <img src="plugins/blue-carbon/images/infoBlue.png"> -->
 			</div>
 			<div class="infoDiv infoClose">
-				<img src="plugins/blue-carbon/images/infoCloseBlue.png">
+				<i class="fa fa-close feInfo feInfoClose"></i>
+				<!-- <img src="plugins/blue-carbon/images/infoCloseBlue.png"> -->
 			</div>
 		</div>
 		<div id="infoBox" class="infoBox">
@@ -62,43 +64,30 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				</div>
 			</div>	
 			<h4>Total Mangrove Blue Carbon Opportunity</h4>
-			<div style="margin:10px 15px 10px 10px; display:flex;">
-				<div style="text-align:right; margin-right:6px; min-width:180px; position:relative;">
-					<div class="raVals rValHl" style="color:#cd7000" id="restoreVal"></div>
-					<div class="raVals aValHl" style="border-bottom:1pt solid #999; color:#804600;" id="avoidVal"></div>
-					<div style="display:flex;">
-						<div class="totArrowLeft"></div>
+			<div style="margin-left:10px;">
+				<div style="position:relative;">
+					<div class="bco-lables">
+						<div class="raVals rValHl" style="color:#cd7000" id="restoreVal"></div>
+						<div class="raValsLbl" style="color:#cd7000;">MtCO<sub>2</sub>e from <b>restorable areas</b></div>
+					</div>
+					<div class="bco-lables">
+						<div class="raVals aValHl" style="border-bottom:1pt solid #999; color:#804600;" id="avoidVal"></div>
+						<div class="raValsLbl" style="color:#804600;">MtCO<sub>2</sub>e from <b>annual avoided loss</b></div>
+					</div>
+					<div class="bco-lables">
 						<div class="raVals tValHl" id="totVal"></div>
-					</div>
-					<div class="plusSign">+</div>
-				</div>
-				<div style="margin-top:7px;">
-					<div class="raValsLbl" style="color:#cd7000;">MtCO<sub>2</sub>e from<br><b>restorable areas</b></div>
-					<div class="raValsLbl" style="color:#804600;">MtCO<sub>2</sub>e from<br><b>annual avoided loss</b></div>
-					<div style="display:flex;">
-						<div class="raValsTotLbl">MtCO<sub>2</sub>e Total Mangrove<br>Blue Carbon Opportunity</div>
-						<div class="totArrowRight"></div>
+						<div class="raValsTotLbl">MtCO<sub>2</sub>e <b>Total</b> Mangrove Blue Carbon Opportunity</div>
 					</div>	
-				</div>				
+					<div class="plusSign">+</div>
+				</div>			
 			</div>	
-			<div class='barWrapper'>
-				<div class="leftBar" id="restoreBar"></div>
-				<div class="rightBar" id="avoidBar"></div>
-				<!-- <div class="ndcWrap"> -->
-					<div class="ndcLine"></div>
-					<div class="ndcContent">
-						<div class="wNdc">
-							<span id="ndcText" style="text-decoration:underline;"></span>:
-							<div><span id="ndcVal" style="font-weight:bold; font-size:18px;">228</span> MtCO<sub>2</sub>e by <span id="ndcYear">2030</span></div>
-							<div>(<span id="ndcPer"></span>% of Total Mangrove</div>
-							<div style="margin-left:6px;">Blue Carbon Opportunity)</div>
-						</div>
-						<div class="woNdc">
-							<span>No NDC Target</span>
-						</div>	
-					</div>
-				<!-- </div>	 -->
+			<h4>NDC Target</h4>
+			<div class="wNdc">
+				<div style="color:#438c9d;"><span id="ndcVal" style="font-size:30px;">228</span> MtCO<sub>2</sub>e by <span id="ndcYear">2030</span></div>
 			</div>
+			<div class="woNdc">
+				<span style="color:#438c9d; font-size:20px;">No NDC Target</span>
+			</div>	
 		</div>
 	</section>
 	<section style="color:#757b80; padding:10px; font-size:12px;">
